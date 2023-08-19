@@ -1,10 +1,9 @@
-package com.example.zuoye;
+package com.example.photoshare;
 
 import android.app.Application;
 import android.content.Context;
 
 
-import com.example.zuoye.entity.User;
 
 import org.xutils.DbManager;
 import org.xutils.x;
@@ -14,7 +13,6 @@ import org.xutils.x;
 public class App extends Application {
 
     private static App singstance;
-    public User user =null;
     private static Context context;
     public static DbManager dbManager;//数据库存储
 

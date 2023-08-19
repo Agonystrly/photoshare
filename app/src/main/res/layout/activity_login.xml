@@ -58,13 +58,7 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Spinner
-                android:layout_gravity="center_horizontal"
-                android:padding="@dimen/dp_10"
-                android:entries="@array/shenfen"
-                android:id="@+id/sp_shenfen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/submit"
@@ -78,6 +72,7 @@
                 android:text="登录"
                 android:textColor="@color/white"
                 app:cornerRadius="15sp"
+                android:onClick="login"
                 app:iconSize="20dp"
                 app:iconTint="@color/color_333333"
                 app:strokeColor="@color/color_333333"
@@ -91,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="注册昵称"
+                android:onClick="register"
                 android:textColor="@color/color_333333"
                 android:textSize="11sp" />
 
