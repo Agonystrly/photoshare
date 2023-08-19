@@ -11,7 +11,10 @@ import androidx.databinding.ViewDataBinding;
 
 import com.example.photoshare.R;
 import com.example.photoshare.common.Contact;
+import com.example.photoshare.common.ErrorResult;
+import com.example.photoshare.common.GsonUtils;
 import com.example.photoshare.databinding.ActivityRegisterBinding;
+import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -152,13 +155,26 @@ public class RegisterActivity extends BaseActivity {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.d("输出数据",result);
-                Toast.makeText(x.app(), result, Toast.LENGTH_LONG).show();
+                ErrorResult<Object> result1 = GsonUtils.getInstance().fromJson(result,ErrorResult.class);
+                if (result1!=null){
+                    if (result1.getCode() ==200){
+                        Toast.makeText(x.app(),result1.getMsg(), Toast.LENGTH_LONG).show();
+                        finish();
+                        return;
+                    }
+                    Toast.makeText(x.app(),result1.getMsg(), Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                Log.d("输出数据",ex.getMessage());
+                ErrorResult<Object> result = GsonUtils.getInstance().fromJson(ex.getMessage(),ErrorResult.class);
+                if (result!=null){
+                    Toast.makeText(x.app(),result.getMsg(), Toast.LENGTH_LONG).show();
+                }
+
+
             }
 
             @Override
